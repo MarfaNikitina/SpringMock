@@ -1,4 +1,4 @@
-package com.example.springtest.logic;
+package com.example.springtest.Pet.logic;
 
 public class Pet {
     private String name;

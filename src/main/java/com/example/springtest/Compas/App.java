@@ -1,4 +1,4 @@
-package com.example.springtest;
+package com.example.springtest.Compas;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

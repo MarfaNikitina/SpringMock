@@ -1,7 +1,7 @@
-package com.example.springtest.controller;
+package com.example.springtest.Pet.controller;
 
-import com.example.springtest.logic.Pet;
-import com.example.springtest.logic.PetModel;
+import com.example.springtest.Pet.logic.Pet;
+import com.example.springtest.Pet.logic.PetModel;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
