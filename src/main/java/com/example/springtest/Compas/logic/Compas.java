@@ -4,17 +4,18 @@ public class Compas{
 
     private WorldSideRange[] sideRanges = new WorldSideRange[8];
 
-//    {
-//        "North": "0-45",
-//            "North-East": "46-90",
-//            "East": "91-135",
-//            "South-East": "136-180",
-//            "South": "181-225",
-//            "South-West": "226-270",
-//            "West": "271-315",
-//            "North-West": "316-359"
-//    }
-
+    /*
+    {
+        "North": "341-45",
+            "North-East": "46-90",
+            "East": "91-135",
+            "South-East": "136-180",
+            "South": "181-225",
+            "South-West": "226-270",
+            "West": "271-315",
+            "North-West": "316-340"
+    }
+*/
     public Compas() {
         super();
     }
@@ -33,7 +34,13 @@ public class Compas{
 
     public String getSide(int degree) {
         for (WorldSideRange sideRange : sideRanges) {
-            if (degree <= sideRange.getEndDegree() && degree >= sideRange.getStartDegree()) {
+            int end = sideRange.getEndDegree();
+            int start = sideRange.getStartDegree();
+            if (start > end) {
+                if ((degree <= end && degree >= 0) || (degree >= start && degree <= 359)) {
+                    return sideRange.getName();
+                }
+            } else if (degree <= end && degree >= start) {
                 return sideRange.getName();
             }
         }
