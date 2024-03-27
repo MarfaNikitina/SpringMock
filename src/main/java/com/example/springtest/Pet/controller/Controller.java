@@ -1,15 +1,10 @@
 package com.example.springtest.Pet.controller;
-
 import com.example.springtest.Pet.logic.Pet;
 import com.example.springtest.Pet.logic.PetModel;
-import org.json.JSONObject;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.regex.Pattern;
+
 
 @RestController
 public class Controller {
@@ -54,16 +49,12 @@ public class Controller {
 http://localhost:8989/deletePet?id=1
    */
     @DeleteMapping(value = "/deletePet", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<String> deletePet(@RequestParam("id") int id) {
+    public String deletePet(@RequestParam("id") int id) {
         if (id > petModel.getAll().size()) {
-            return ResponseEntity.ok()
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(JSONObject.quote("Нет питомца c id: " + id));
+            return "{\"message\": \"Такого питомца не существует\"}";
         }
         petModel.delete(id);
-        return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(JSONObject.quote("Питомец с id: " + id + " успешно удален"));
+        return "{\"message\": \"Питомец успешно удален\"}";
     }
 
 
@@ -77,15 +68,11 @@ http://localhost:8989/deletePet?id=1
     }
 */
     @PutMapping(value = "/changePet", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<String> editPet(@RequestParam("id") int id, @RequestBody Pet pet) {
+    public String editPet(@RequestParam("id") int id, @RequestBody Pet pet) {
         if (id > petModel.getAll().size()) {
-            return ResponseEntity.ok()
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(JSONObject.quote("Нет питомца c id: " + id));
+            return "{\"message\": \"Такого питомца не существует\"}";
         }
         petModel.put(id, pet);
-        return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(JSONObject.quote("Питомец с id: " + id + " успешно изменен"));
+        return "{\"message\": \"Питомец успешно изменен\"}";
     }
 }

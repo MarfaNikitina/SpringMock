@@ -2,9 +2,6 @@ package com.example.springtest.Compas.controller;
 
 import com.example.springtest.Compas.logic.Compas;
 import com.example.springtest.Compas.logic.WorldSideRange;
-import org.json.JSONObject;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -42,10 +39,8 @@ public class CompasController {
     }
 
     @GetMapping(value="/get-info", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<String> getInfo(@RequestParam("degree") int degree) {
+    public String getInfo(@RequestParam("degree") int degree) {
         String side = compas.getSide(degree);
-        return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(JSONObject.quote("Side: " + side));
+        return "{\"Side\" : \"" + side + "\"}";
     }
 }
